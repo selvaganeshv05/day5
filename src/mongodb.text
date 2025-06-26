@@ -1,0 +1,639 @@
+use mydatabase
+switched to db mydatabase
+db.createCollection("STUDENT")
+{ ok: 1 }
+db.STUDENT.insertOne({name:"selva",age:10,dept:"MTS"})
+{
+  acknowledged: true,
+  insertedId: ObjectId('685a66a26358a5a46371607a')
+}
+db.STUDENT.insertMany([{name:"selva",age:10,dept:"MTS"},{name:"sriram",age:15,dept:"FT"},{name:"shiva",age:20,dept:"mech"},{name:"nithin",age:22,dept:"CSE"},{name:"pragathes",age:25,dept:"IT"}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('685a679b6358a5a46371607b'),
+    '1': ObjectId('685a679b6358a5a46371607c'),
+    '2': ObjectId('685a679b6358a5a46371607d'),
+    '3': ObjectId('685a679b6358a5a46371607e'),
+    '4': ObjectId('685a679b6358a5a46371607f')
+  }
+}
+db.STUDENT.find()
+{
+  _id: ObjectId('685a66a26358a5a46371607a'),
+  name: 'selva',
+  age: 10,
+  dept: 'MTS'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607b'),
+  name: 'selva',
+  age: 10,
+  dept: 'MTS'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607c'),
+  name: 'sriram',
+  age: 15,
+  dept: 'FT'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607d'),
+  name: 'shiva',
+  age: 20,
+  dept: 'mech'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607e'),
+  name: 'nithin',
+  age: 22,
+  dept: 'CSE'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607f'),
+  name: 'pragathes',
+  age: 25,
+  dept: 'IT'
+}
+db.STUDENT.find({dept:"FT"})
+{
+  _id: ObjectId('685a679b6358a5a46371607c'),
+  name: 'sriram',
+  age: 15,
+  dept: 'FT'
+}
+db.STUDENT.find({age:{$gt:20}})
+{
+  _id: ObjectId('685a679b6358a5a46371607e'),
+  name: 'nithin',
+  age: 22,
+  dept: 'CSE'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607f'),
+  name: 'pragathes',
+  age: 25,
+  dept: 'IT'
+}
+db.STUDENT.find({age:{$lt:20}})
+{
+  _id: ObjectId('685a66a26358a5a46371607a'),
+  name: 'selva',
+  age: 10,
+  dept: 'MTS'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607b'),
+  name: 'selva',
+  age: 10,
+  dept: 'MTS'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607c'),
+  name: 'sriram',
+  age: 15,
+  dept: 'FT'
+}
+db.STUDENT.find({age:{$lte:20}})
+{
+  _id: ObjectId('685a66a26358a5a46371607a'),
+  name: 'selva',
+  age: 10,
+  dept: 'MTS'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607b'),
+  name: 'selva',
+  age: 10,
+  dept: 'MTS'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607c'),
+  name: 'sriram',
+  age: 15,
+  dept: 'FT'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607d'),
+  name: 'shiva',
+  age: 20,
+  dept: 'mech'
+}
+db.STUDENT.find({age:{$gte:20}})
+{
+  _id: ObjectId('685a679b6358a5a46371607d'),
+  name: 'shiva',
+  age: 20,
+  dept: 'mech'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607e'),
+  name: 'nithin',
+  age: 22,
+  dept: 'CSE'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607f'),
+  name: 'pragathes',
+  age: 25,
+  dept: 'IT'
+}
+db.STUDENT.find({dept:{$in:["FT","MTS"]}})
+{
+  _id: ObjectId('685a66a26358a5a46371607a'),
+  name: 'selva',
+  age: 10,
+  dept: 'MTS'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607b'),
+  name: 'selva',
+  age: 10,
+  dept: 'MTS'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607c'),
+  name: 'sriram',
+  age: 15,
+  dept: 'FT'
+}
+db.STUDENT.updateOne({dept:FT},{$set:{email:"sri@gmail.com"}}})
+SyntaxError: Unexpected token, expected "," (1:61)
+
+[0m[31m[1m>[22m[39m[90m 1 |[39m db[33m.[39m[33mSTUDENT[39m[33m.[39mupdateOne({dept[33m:[39m[33mFT[39m}[33m,[39m{$set[33m:[39m{email[33m:[39m[32m"sri@gmail.com"[39m}}})
+ [90m   |[39m                                                              [31m[1m^[22m[39m[0m
+db.STUDENT.updateOne({dept:"FT"},{$set:{email:"sri@gmail.com"}}})
+SyntaxError: Unexpected token, expected "," (1:63)
+
+[0m[31m[1m>[22m[39m[90m 1 |[39m db[33m.[39m[33mSTUDENT[39m[33m.[39mupdateOne({dept[33m:[39m[32m"FT"[39m}[33m,[39m{$set[33m:[39m{email[33m:[39m[32m"sri@gmail.com"[39m}}})
+ [90m   |[39m                                                                [31m[1m^[22m[39m[0m
+db.STUDENT.updateOne({ dept: "FT" }, { $set: { email: "sri@gmail.com" } })
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.STUDENT.find()
+{
+  _id: ObjectId('685a66a26358a5a46371607a'),
+  name: 'selva',
+  age: 10,
+  dept: 'MTS'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607b'),
+  name: 'selva',
+  age: 10,
+  dept: 'MTS'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607c'),
+  name: 'sriram',
+  age: 15,
+  dept: 'FT',
+  email: 'sri@gmail.com'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607d'),
+  name: 'shiva',
+  age: 20,
+  dept: 'mech'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607e'),
+  name: 'nithin',
+  age: 22,
+  dept: 'CSE'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607f'),
+  name: 'pragathes',
+  age: 25,
+  dept: 'IT'
+}
+db.STUDENT.updateOne({name:"sriram"},{$set:{name:"SRIRAMKUMAR"}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+db.STUDENT.find()
+{
+  _id: ObjectId('685a66a26358a5a46371607a'),
+  name: 'selva',
+  age: 10,
+  dept: 'MTS'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607b'),
+  name: 'selva',
+  age: 10,
+  dept: 'MTS'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607c'),
+  name: 'SRIRAMKUMAR',
+  age: 15,
+  dept: 'FT',
+  email: 'sri@gmail.com'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607d'),
+  name: 'shiva',
+  age: 20,
+  dept: 'mech'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607e'),
+  name: 'nithin',
+  age: 22,
+  dept: 'CSE'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607f'),
+  name: 'pragathes',
+  age: 25,
+  dept: 'IT'
+}
+ 
+db.STUDENT.upadateMany([{name:shiva},{$set:{dept:"CHEM"}},{name:selva},{$set:{dept:"mech"}}])
+ReferenceError: shiva is not defined
+db.STUDENT.upadateMany([{name:""shiva"},{$set:{dept:"CHEM"}},{name:selva},{$set:{dept:"mech"}}])
+SyntaxError: Unexpected token, expected "," (1:32)
+
+[0m[31m[1m>[22m[39m[90m 1 |[39m db[33m.[39m[33mSTUDENT[39m[33m.[39mupadateMany([{name[33m:[39m[32m""[39mshiva[32m"},{$set:{dept:"[39m[33mCHEM[39m[32m"}},{name:selva},{$set:{dept:"[39mmech[32m"}}])[39m
+ [90m   |[39m                                 [31m[1m^[22m[39m[0m
+db.students.deleteOne({ name: "selva" })
+{
+  acknowledged: true,
+  deletedCount: 0
+}
+db.STUDENT.deleteOne({ name: "selva" })
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+db.STUDENT.find()
+{
+  _id: ObjectId('685a679b6358a5a46371607b'),
+  name: 'selva',
+  age: 10,
+  dept: 'MTS'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607c'),
+  name: 'SRIRAMKUMAR',
+  age: 15,
+  dept: 'FT',
+  email: 'sri@gmail.com'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607d'),
+  name: 'shiva',
+  age: 20,
+  dept: 'mech'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607e'),
+  name: 'nithin',
+  age: 22,
+  dept: 'CSE'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607f'),
+  name: 'pragathes',
+  age: 25,
+  dept: 'IT'
+}
+db.STUDENT.deleteOne({ name: "SRIRAMKUMAR" })
+{
+  acknowledged: true,
+  deletedCount: 1
+}
+db.STUDENT.find()
+{
+  _id: ObjectId('685a679b6358a5a46371607b'),
+  name: 'selva',
+  age: 10,
+  dept: 'MTS'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607d'),
+  name: 'shiva',
+  age: 20,
+  dept: 'mech'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607e'),
+  name: 'nithin',
+  age: 22,
+  dept: 'CSE'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607f'),
+  name: 'pragathes',
+  age: 25,
+  dept: 'IT'
+}
+db.STUDENT.insert({name:"SRIRAMKUMAR"})
+DeprecationWarning: Collection.insert() is deprecated. Use insertOne, insertMany, or bulkWrite.
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId('685a6dd86358a5a463716080')
+  }
+}
+db.STUDENT.find()
+{
+  _id: ObjectId('685a679b6358a5a46371607b'),
+  name: 'selva',
+  age: 10,
+  dept: 'MTS'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607d'),
+  name: 'shiva',
+  age: 20,
+  dept: 'mech'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607e'),
+  name: 'nithin',
+  age: 22,
+  dept: 'CSE'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607f'),
+  name: 'pragathes',
+  age: 25,
+  dept: 'IT'
+}
+{
+  _id: ObjectId('685a6dd86358a5a463716080'),
+  name: 'SRIRAMKUMAR'
+}
+db.STUDENT.limit(3)
+TypeError: db.STUDENT.limit is not a function
+db.STUDENT.find().limit(3) // ✅ This is correct
+{
+  _id: ObjectId('685a679b6358a5a46371607b'),
+  name: 'selva',
+  age: 10,
+  dept: 'MTS'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607d'),
+  name: 'shiva',
+  age: 20,
+  dept: 'mech'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607e'),
+  name: 'nithin',
+  age: 22,
+  dept: 'CSE'
+}
+db.STUDENT.find().sort(1)
+MongoInvalidArgumentError: Invalid sort format: 1 Sort must be a valid object
+db.STUDENT.find().sort({ age: 1 })    
+db.STUDENT.find().sort({ age: -1 })   
+{
+  _id: ObjectId('685a679b6358a5a46371607f'),
+  name: 'pragathes',
+  age: 25,
+  dept: 'IT'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607e'),
+  name: 'nithin',
+  age: 22,
+  dept: 'CSE'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607d'),
+  name: 'shiva',
+  age: 20,
+  dept: 'mech'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607b'),
+  name: 'selva',
+  age: 10,
+  dept: 'MTS'
+}
+{
+  _id: ObjectId('685a6dd86358a5a463716080'),
+  name: 'SRIRAMKUMAR'
+}
+db.STUDENT.find().sort({ name: 1 })     // Sort by age in ascending order
+db.STUDENT.find().sort({ age: -1 })    // Sort by age in descending order
+{
+  _id: ObjectId('685a679b6358a5a46371607f'),
+  name: 'pragathes',
+  age: 25,
+  dept: 'IT'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607e'),
+  name: 'nithin',
+  age: 22,
+  dept: 'CSE'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607d'),
+  name: 'shiva',
+  age: 20,
+  dept: 'mech'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607b'),
+  name: 'selva',
+  age: 10,
+  dept: 'MTS'
+}
+{
+  _id: ObjectId('685a6dd86358a5a463716080'),
+  name: 'SRIRAMKUMAR'
+}
+db.STUDENT.find().sort({ name: 1 })       
+{
+  _id: ObjectId('685a6dd86358a5a463716080'),
+  name: 'SRIRAMKUMAR'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607e'),
+  name: 'nithin',
+  age: 22,
+  dept: 'CSE'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607f'),
+  name: 'pragathes',
+  age: 25,
+  dept: 'IT'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607b'),
+  name: 'selva',
+  age: 10,
+  dept: 'MTS'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607d'),
+  name: 'shiva',
+  age: 20,
+  dept: 'mech'
+}
+db.STUDENT.find().sort({ name: -1 })       
+{
+  _id: ObjectId('685a679b6358a5a46371607d'),
+  name: 'shiva',
+  age: 20,
+  dept: 'mech'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607b'),
+  name: 'selva',
+  age: 10,
+  dept: 'MTS'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607f'),
+  name: 'pragathes',
+  age: 25,
+  dept: 'IT'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607e'),
+  name: 'nithin',
+  age: 22,
+  dept: 'CSE'
+}
+{
+  _id: ObjectId('685a6dd86358a5a463716080'),
+  name: 'SRIRAMKUMAR'
+}
+db.STUDENT.find()       
+{
+  _id: ObjectId('685a679b6358a5a46371607b'),
+  name: 'selva',
+  age: 10,
+  dept: 'MTS'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607d'),
+  name: 'shiva',
+  age: 20,
+  dept: 'mech'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607e'),
+  name: 'nithin',
+  age: 22,
+  dept: 'CSE'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607f'),
+  name: 'pragathes',
+  age: 25,
+  dept: 'IT'
+}
+{
+  _id: ObjectId('685a6dd86358a5a463716080'),
+  name: 'SRIRAMKUMAR'
+}
+db.STUDENT.find().sort({name:1})       
+{
+  _id: ObjectId('685a6dd86358a5a463716080'),
+  name: 'SRIRAMKUMAR'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607e'),
+  name: 'nithin',
+  age: 22,
+  dept: 'CSE'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607f'),
+  name: 'pragathes',
+  age: 25,
+  dept: 'IT'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607b'),
+  name: 'selva',
+  age: 10,
+  dept: 'MTS'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607d'),
+  name: 'shiva',
+  age: 20,
+  dept: 'mech'
+}
+db.STUDENT.find().sor({name: -1})
+TypeError: db.STUDENT.find().sor is not a function
+db.STUDENT.find().sort({name: -1})
+{
+  _id: ObjectId('685a679b6358a5a46371607d'),
+  name: 'shiva',
+  age: 20,
+  dept: 'mech'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607b'),
+  name: 'selva',
+  age: 10,
+  dept: 'MTS'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607f'),
+  name: 'pragathes',
+  age: 25,
+  dept: 'IT'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607e'),
+  name: 'nithin',
+  age: 22,
+  dept: 'CSE'
+}
+{
+  _id: ObjectId('685a6dd86358a5a463716080'),
+  name: 'SRIRAMKUMAR'
+}
+db.STUDENT.find().sort({dept:1})
+{
+  _id: ObjectId('685a6dd86358a5a463716080'),
+  name: 'SRIRAMKUMAR'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607e'),
+  name: 'nithin',
+  age: 22,
+  dept: 'CSE'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607f'),
+  name: 'pragathes',
+  age: 25,
+  dept: 'IT'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607b'),
+  name: 'selva',
+  age: 10,
+  dept: 'MTS'
+}
+{
+  _id: ObjectId('685a679b6358a5a46371607d'),
+  name: 'shiva',
+  age: 20,
+  dept: 'mech'
+}
+mydatabase
+

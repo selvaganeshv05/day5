@@ -3,7 +3,7 @@ import React from 'react';
 
 function Top() {
   return (
-    <header className="r">INSTAGRAM WEBPAGE</header>
+    <header className="r">Podcast WEBPAGE</header>
   );
 }
 

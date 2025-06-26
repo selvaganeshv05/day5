@@ -1,14 +1,16 @@
 .Login {
-  color: blueviolet;
-  border: 5px solid black;
+  color: rgb(27, 26, 27);
+  border: 5px solid rgb(183, 107, 202);
   padding: 20px;
   width: 40%;
-  height: 300px;
+  height: 350px;
   margin: 50px auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: violet;
+  border-radius: 15px;
 }
 
 .e1, .e {
@@ -23,7 +25,7 @@
 }
 
 .r {
-  background-color: #004aad;
+  background-color: #6a0dad;
   color: white;
   padding: 20px;
   display: flex;
@@ -38,10 +40,15 @@
   background-color: #222;
   color: #fff;
   text-align: center;
-  padding: 20px;
+  padding: 15px;
   font-size: 14px;
-  margin-top: 10px;
+  position: fixed; 
+  bottom: 0;
+  width: 100%;
+  font-family: Arial, sans-serif;
+  margin-top: 30px;
 }
+
 
 .i {
   background-color: #004aad;
@@ -63,18 +70,25 @@
 }
 
 .q {
-  border-radius: 30px;
-  border: 5px solid black;
-  width: 350px;
-  height: 350px;
+  border-radius: 20px;
+  border: 3px solid black;
+  width: 250px;
+  height: 350px;               
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between; 
+  padding: 10px;
+  box-sizing: border-box;
 }
 
+
 .n {
-  border-radius: 15px;
+  width: 180px;  
+  height: auto;
+  border-radius: 10px;
 }
+
 
 .g {
   display: flex;
@@ -82,10 +96,65 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
-  gap: 20px;
+  gap: 60px;
 }
 .p{
   background-color: crimson;
   border-radius: 5px;
   padding: 5px;
+}
+audio {
+  width: 200px;         
+  height: 32px;         
+  margin-top: 10px;    
+  display: block;
+  border-radius: 15px;
+}
+.q h2 {
+  margin: 10px 0; 
+}
+.g:hover .q{
+  transform: scale(0.9);
+}
+.q:hover{
+  rotate: 5deg;
+}
+button:hover{
+  transform: scale(0.8);
+}
+n:hover{
+  rotate: 5deg;
+}
+.x{
+  border: 2px solid blue;
+  width: 60pxpx;
+  height: 25px;
+  border-radius: 15px;
+}
+.x:hover{
+  rotate: 5deg;
+}
+.green{
+  background-attachment: fixed;
+  background-color: lightpink;
+  height: 100vh;
+}
+.logout-btn {
+  background-color: #d9534f;
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: #c9302c;
+}
+.log{
+  position: absolute;
+  top: 7vh;
+  right: 3px;
 }
